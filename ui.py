@@ -1,6 +1,5 @@
 import PySimpleGUI as sg
 import re, time
-import datacompy
 import pandas as pd
 import comp as cp
 
@@ -156,21 +155,17 @@ while True:
                     definedkey.append(keyslist[index-2])
             
         if len(definedkey) == 1:
-            # compare = datacompy.Compare(
-            #         df1,
-            #         df2,
-            #         join_columns=definedkey,  
-            #         abs_tol=0, 
-            #         rel_tol=0, 
-            #         df1_name='Original', 
-            #         df2_name='New' 
-            # )
-            print('########################################################################################################')
-            print(definedkey[0],":")
+            df1.dropna()
+            df2.dropna()
+            print('____________________________________________________________________________________________________________________________')
+            #print(definedkey)
             a = df2[definedkey[0]]
             b = list(a)
             for i in range(df1.shape[0]):
+                print()
+                print(df1.iloc[i][definedkey[0]],":")
                 cp.get_match(df1.iloc[i][definedkey[0]],b)
+                print()
             #print(df1.head())
         else:
             print('Error: You need to select only one attribute as a data key')
